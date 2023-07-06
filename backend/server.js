@@ -17,38 +17,38 @@ async function main() {
   console.log("database connected successfully");
 }
 
-app.get("/api/data", (req, res) => {
-  fs.readFile("data.json", "utf8", (err, data) => {
-    if (err) {
-      console.error("Error reading file:", err);
-      res.status(500).send("Internal Server Error");
-      return;
-    }
+// app.get("/api/data", (req, res) => {
+//   fs.readFile("data.json", "utf8", (err, data) => {
+//     if (err) {
+//       console.error("Error reading file:", err);
+//       res.status(500).send("Internal Server Error");
+//       return;
+//     }
 
-    const jsonData = JSON.parse(data);
-    res.json(jsonData);
-  });
-});
-app.get("/api/data/:id", (req, res) => {
-  const id = req.params.id;
-  fs.readFile("state.json", "utf8", (err, data) => {
-    if (err) {
-      console.error("Error reading file:", err);
-      res.status(500).send("Internal Server Error");
-      return;
-    }
+//     const jsonData = JSON.parse(data);
+//     res.json(jsonData);
+//   });
+// });
+// app.get("/api/data/:id", (req, res) => {
+//   const id = req.params.id;
+//   fs.readFile("state.json", "utf8", (err, data) => {
+//     if (err) {
+//       console.error("Error reading file:", err);
+//       res.status(500).send("Internal Server Error");
+//       return;
+//     }
 
-    const jsonData = JSON.parse(data);
-    const filteredData = jsonData.filter((item) => item.country_id === id);
-    console.log(filteredData);
-    res.json(filteredData);
-  });
-});
+//     const jsonData = JSON.parse(data);
+//     const filteredData = jsonData.filter((item) => item.country_id === id);
+//     console.log(filteredData);
+//     res.json(filteredData);
+//   });
+// });
 
 //---------------------------------------------------------------------
 //body praser
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 app.use("/user", userRouter.router);
 
 app.listen(port, () => {
