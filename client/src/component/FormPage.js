@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Country, State } from "country-state-city";
 import { useForm } from "react-hook-form";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 
 const FormPage = () => {
